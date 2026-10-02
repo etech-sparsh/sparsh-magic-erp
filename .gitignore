@@ -97,3 +97,8 @@ var/uploads/
 git-secret-check.txt
 scratch/
 .claude/
+
+# Local security / review files
+git-secret-check.txt
+scratch/
+.claude/
