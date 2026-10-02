@@ -1,0 +1,99 @@
+# Dependency directories
+node_modules/
+frontend/node_modules/
+backend/venv/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+backend/.env
+frontend/.env
+
+# Build outputs
+dist/
+dist-ssr/
+frontend/dist/
+*.local
+build/
+bin/
+obj/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+frontend/npm-debug.log*
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Python specific
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/__pycache__/
+.pytest_cache/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.sed
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Vite / Frontend specific
+.vite/
+frontend/.vite/
+*.tsbuildinfo
+
+# Database (if any local)
+*.sqlite3
+*.db
+
+# Local upload fallback (TEMPORARY, see app/services/local_upload_store.py).
+# Holds candidate CVs and ID documents when S3 is unreachable — personal data that must
+# never reach the repository.
+backend/var/
+var/uploads/
+
+# SSH / private keys
+*.pem
+*.key
+
+# Local security / review files
+git-secret-check.txt
+scratch/
+.claude/

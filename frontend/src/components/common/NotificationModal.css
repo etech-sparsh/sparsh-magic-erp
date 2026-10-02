@@ -1,0 +1,114 @@
+.notification-wrapper {
+  position:固定;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.notification-card {
+  pointer-events: auto;
+  min-width: 320px;
+  max-width: 450px;
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.notification-card.success {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #f0fdf4 100%);
+  border-color: var(--accent-green-border);
+}
+
+.notification-card.error {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #fef2f2 100%);
+  border-color: #fecaca;
+}
+
+.notification-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.success .notification-icon {
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+.error .notification-icon {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+}
+
+.notification-message {
+  margin: 0.25rem 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.notification-close:hover {
+  background: var(--input-bg);
+  color: var(--text-main);
+}
+
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 0 0 0 24px;
+}
+
+.success .notification-progress {
+  background: var(--accent-green);
+}
+
+.error .notification-progress {
+  background: #ef4444;
+}
+
+[data-theme='dark'] .notification-card.success {
+    background: linear-gradient(135deg, var(--bg-card) 0%, #064e3b 100%);
+}
+
+[data-theme='dark'] .notification-card.error {
+    background: linear-gradient(135deg, var(--bg-card) 0%, #7f1d1d 100%);
+}

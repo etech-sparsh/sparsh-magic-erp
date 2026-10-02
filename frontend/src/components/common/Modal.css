@@ -1,0 +1,75 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: min(34rem, 95vw);
+  max-height: 90vh;               /* never taller than the viewport */
+  display: flex;
+  flex-direction: column;         /* header fixed, body scrolls */
+  overflow: hidden;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+/* Wide variant — for detailed reports/tables inside a modal. */
+.modal-content.modal-wide {
+  max-width: min(72rem, 95vw);
+}
+
+.modal-header {
+  flex-shrink: 0;                 /* keep title + close button always visible */
+}
+
+.modal-body {
+  overflow-y: auto;               /* only the body scrolls, not the page */
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.modal-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--accent-red, #ef4444);
+}
+
+.modal-body {
+  padding: 1.25rem;
+}

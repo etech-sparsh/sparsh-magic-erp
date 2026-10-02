@@ -1,0 +1,30 @@
+name: Deploy Sparsh 2.0
+
+on:
+  push:
+    branches:
+      - main  # Trigger only on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          command_timeout: 30m
+          script: |
+            set -e
+            cd ~/sparsh2.0
+            git fetch origin main
+            git reset --hard origin/main
+            docker-compose build
+            docker-compose up -d --remove-orphans --force-recreate
+            docker image prune -f

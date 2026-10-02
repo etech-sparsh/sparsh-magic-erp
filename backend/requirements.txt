@@ -1,0 +1,58 @@
+# ─── Web Framework ───
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# ─── Database ───
+motor==3.7.0
+pymongo==4.10.1
+certifi==2024.12.14
+
+# ─── Pydantic / Settings ───
+pydantic[email]==2.10.5
+pydantic-settings==2.7.1
+email-validator==2.2.0
+
+# ─── Authentication ───
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+# bcrypt 4.x is required for Python 3.11+ compatibility; 3.2.0 causes AttributeError
+bcrypt==4.2.1
+
+# ─── File Handling ───
+python-multipart==0.0.20
+aiofiles==24.1.0
+
+# ─── Document Parsing ───
+pypdf==5.1.0
+# Renders image-based/scanned PDFs to images so the multimodal model can read them
+# 1.25.5 ships an abi3 wheel compatible with Python 3.13 (1.24.10 has no cp313 wheel)
+PyMuPDF==1.25.5
+python-docx==1.1.2
+pandas==2.2.3
+openpyxl==3.1.5
+# Legacy .xls (BIFF) support for pandas read_excel
+xlrd>=2.0.1
+# Presentations (.ppt/.pptx) for assistant multi-modal attachments
+python-pptx==1.0.2
+# Generates downloadable PDFs of chat conversations (assistant "export chat as PDF")
+reportlab==4.5.1
+
+# ─── AI / ML ───
+openai>=1.93.0
+numpy==2.2.3
+
+# ─── Speech / Audio ───
+SpeechRecognition==3.14.1
+# Note: FFmpeg is a system dependency. The binary must be installed on the OS.
+# Below is the python wrapper for FFmpeg commands.
+ffmpeg-python==0.2.0
+
+# ─── AWS S3 ───
+boto3==1.37.5
+
+# ─── HTTP / Networking ───
+requests==2.32.3
+
+# ─── Environment ───
+# Required by app/config/settings.py: from dotenv import load_dotenv
+python-dotenv==1.0.1

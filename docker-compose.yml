@@ -1,0 +1,30 @@
+services:
+  backend:
+    build: ./backend
+    container_name: backend-sparsh
+    expose:
+      - "8000"
+    env_file:
+      - ./backend/.env
+    restart: always
+    networks:
+      - sparsh-net
+
+  frontend:
+    build: ./frontend
+    container_name: frontend-sparsh
+    ports:
+      # Host 8082 → container 80. This box shares a host nginx that owns :80/:443,
+      # so Sparsh is published on a dedicated port. Access: http://<host-ip>:8082
+      # When a domain + TLS is added, front this port with the host nginx (or
+      # re-introduce 443 + a letsencrypt volume mount here).
+      - "8082:80"
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - sparsh-net
+
+networks:
+  sparsh-net:
+    driver: bridge

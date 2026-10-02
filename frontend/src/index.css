@@ -1,0 +1,311 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-wheat: #fffcf4;
+  --color-wheat-border: #f8f1de;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+}
+
+:root {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --sidebar-active-bg: #eef2ff;
+  --sidebar-active-text: #4f46e5;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Vibrant Accent Palette - Light */
+  --accent-green: #22c55e;
+  --accent-green-bg: #f0fdf4;
+  --accent-green-border: #bbf7d0;
+  --accent-orange: #f97316;
+  --accent-orange-bg: #fff7ed;
+  --accent-orange-border: #fed7aa;
+  --accent-red: #ef4444;
+  --accent-red-bg: #fef2f2;
+  --accent-red-border: #fecaca;
+  --accent-yellow: #eab308;
+  --accent-yellow-bg: #fefce8;
+  --accent-yellow-border: #fef08a;
+  --accent-indigo: #6366f1;
+  --accent-indigo-bg: #eef2ff;
+  --accent-indigo-border: #c7d2fe;
+  
+  --status-active-text: #16a34a;
+  --status-active-bg: #f0fdf4;
+  --status-active-border: #bbf7d0;
+  --badge-type-text: #9333ea;
+  --badge-type-bg: #faf5ff;
+  --btn-primary: #4f46e5;
+  --btn-primary-hover: #4338ca;
+  --avatar-bg: linear-gradient(135deg, #6366f1, #a855f7);
+  --input-bg: #f8fafc;
+  --input-border: #e2e8f0;
+  --input-focus-ring: rgba(99, 102, 241, 0.1);
+  --table-header-bg: #f8fafc;
+  --table-hover: #f8fafc;
+}
+
+[data-theme='dark'] {
+  --bg-main: #0a0a1a;
+  --bg-card: #111127;
+  --text-main: #e2e8f0;
+  --text-muted: #64748b;
+  --border: #1e1e3a;
+  --sidebar-bg: #0d0d24;
+  --sidebar-border: #1a1a36;
+  --sidebar-active-bg: rgba(99, 102, 241, 0.15);
+  --sidebar-active-text: #818cf8;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Neon Glow Accent Palette - Dark */
+  --accent-green: #4ade80;
+  --accent-green-bg: rgba(74, 222, 128, 0.1);
+  --accent-green-border: rgba(74, 222, 128, 0.2);
+  --accent-orange: #fb923c;
+  --accent-orange-bg: rgba(251, 146, 60, 0.1);
+  --accent-orange-border: rgba(251, 146, 60, 0.2);
+  --accent-red: #f87171;
+  --accent-red-bg: rgba(248, 113, 113, 0.1);
+  --accent-red-border: rgba(248, 113, 113, 0.2);
+  --accent-yellow: #facc15;
+  --accent-yellow-bg: rgba(250, 204, 21, 0.1);
+  --accent-yellow-border: rgba(250, 204, 21, 0.2);
+  --accent-indigo: #818cf8;
+  --accent-indigo-bg: rgba(129, 140, 248, 0.1);
+  --accent-indigo-border: rgba(129, 140, 248, 0.2);
+
+  --status-active-text: #4ade80;
+  --status-active-bg: rgba(74, 222, 128, 0.08);
+  --status-active-border: rgba(74, 222, 128, 0.2);
+  --badge-type-text: #c084fc;
+  --badge-type-bg: rgba(192, 132, 252, 0.1);
+  --btn-primary: #6366f1;
+  --btn-primary-hover: #818cf8;
+  --avatar-bg: linear-gradient(135deg, #6366f1, #ec4899);
+  --input-bg: #161633;
+  --input-border: #252549;
+  --input-focus-ring: rgba(129, 140, 248, 0.15);
+  --table-header-bg: #0d0d24;
+  --table-hover: rgba(129, 140, 248, 0.04);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: var(--transition);
+  min-height: 100vh;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+input, textarea, select {
+  color: inherit;
+  font-family: inherit;
+}
+
+/* Native controls — <select> popups, scrollbars, date pickers — are painted by the browser,
+   not by the page. Declaring the scheme keeps them in step with the app theme rather than
+   the OS setting. `data-theme` lives on <html>, so this pairs with the token blocks above. */
+:root { color-scheme: light; }
+[data-theme='dark'] { color-scheme: dark; }
+
+/* Option lists are painted by the browser, and Chrome propagates only the select's
+   BACKGROUND onto them — the text colour falls back to a UA default that can land white.
+   Against the light background it inherits, that renders the entries invisible: the list
+   looks blank except the selected row, which the UA paints with its own highlight.
+   So the colour has to be stated explicitly.
+
+   This must use the SAME token pair the selects themselves use, because Chrome on Windows
+   also paints the CLOSED control from the selected option — with a mismatched pair (e.g. a
+   select hard-coded `bg-white` while this says `--text-main`) the closed control washes out
+   in dark mode. Every select in the app now pairs a token background with `--text-main`, so
+   whichever element the browser paints from, the contrast holds in both themes. Keep it that
+   way: a select with a fixed background will reintroduce the washout. */
+select option {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+}
+
+/* The UA paints the selected row with a solid blue system highlight, which is the only
+   colour in an otherwise plain list. Neutralise it to a subtle token tint so the open list
+   reads the same as the closed control: plain text, no colour. The inset box-shadow is
+   needed because Chrome draws that highlight over `background-color`. */
+select option:checked {
+  background-color: var(--input-bg);
+  box-shadow: 0 0 0 100px var(--input-bg) inset;
+  color: var(--text-main);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ─── FullCalendar Theme Overrides ─── */
+.fc {
+  --fc-button-bg-color: var(--bg-card);
+  --fc-button-border-color: var(--border);
+  --fc-button-hover-bg-color: var(--accent-indigo-bg);
+  --fc-button-hover-border-color: var(--accent-indigo);
+  --fc-button-active-bg-color: var(--accent-indigo);
+  --fc-button-active-border-color: var(--accent-indigo);
+  --fc-event-bg-color: transparent;
+  --fc-event-border-color: transparent;
+  --fc-page-bg-color: var(--bg-card);
+  --fc-border-color: var(--border);
+  --fc-today-bg-color: rgba(99, 102, 241, 0.05);
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.5rem !important;
+  font-weight: 900 !important;
+  text-transform: capitalize;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+}
+
+.fc .fc-col-header-cell-cushion {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 12px 4px !important;
+}
+
+.fc .fc-daygrid-day-number {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--text-muted);
+  padding: 8px 12px !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  color: var(--accent-indigo);
+}
+
+.fc-theme-orlando .fc-scrollgrid {
+  border-radius: 24px;
+  border: 1px solid var(--border) !important;
+}
+
+.fc .fc-daygrid-event-harness {
+  margin: 1px 4px !important;
+}
+
+/* Floor for a month-grid day cell. 140px was tall enough to leave a large empty band under
+   quiet days — a week with one or two entries still reserved a full 140px per cell. 104px fits
+   the date number plus the three entries dayMaxEvents allows and the "+N more" link, and since
+   this is a MINIMUM a busy day still grows past it. Matches the TPMS calendar's own
+   min-h-[104px] cells, so the two calendars read at the same density. */
+.fc .fc-daygrid-day-frame {
+  min-height: 104px !important;
+}
+
+.fc .fc-daygrid-event {
+  border-radius: 8px !important;
+}
+
+.fc-v-event, .fc-h-event {
+  background: none !important;
+  border: none !important;
+}
+
+/* Event Popover (More + link) */
+.fc-popover {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  z-index: 1000 !important;
+}
+
+.fc-popover-header {
+  background: var(--table-header-bg) !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  color: var(--text-main) !important;
+}
+
+.prose {
+  --tw-prose-body: var(--text-main);
+  --tw-prose-headings: var(--text-main);
+  --tw-prose-links: var(--accent-indigo);
+  --tw-prose-bold: var(--text-main);
+  --tw-prose-counters: var(--text-muted);
+  --tw-prose-bullets: var(--text-muted);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--text-main);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--text-muted);
+  --tw-prose-code: var(--text-main);
+  --tw-prose-pre-code: var(--text-main);
+  --tw-prose-pre-bg: var(--input-bg);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+}
+
+.prose table {
+  border-collapse: collapse !important;
+  width: 100%;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose thead {
+  background-color: var(--table-header-bg);
+  border-bottom: 2px solid var(--border) !important;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--border) !important;
+  padding: 0.75rem 1rem !important;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: 800 !important;
+  color: var(--text-main) !important;
+  text-align: left;
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.prose tbody tr:nth-child(even) {
+  background-color: var(--table-hover);
+}
+
